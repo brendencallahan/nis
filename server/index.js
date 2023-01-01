@@ -30,11 +30,11 @@ app.use('/api/users', cache('1 minutes'), require('./routes/users'));
 app.use('/api/home', cache('10 minutes'), require('./routes/home'));
 
 // Set cors
-/* app.use(
+app.use(
   cors({
     origin: '*'
   })
-); */
+);
 
 // Define responses
 app.get('/', cache('1 minutes'), (req, res) => {
