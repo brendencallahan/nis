@@ -4,14 +4,13 @@ const path = require('path');
 const cors = require('cors');
 const apiCache = require('apicache');
 const axios = require('axios');
-const { response } = require('express');
 require('dotenv').config();
 
 // Set variables
 const PORT = process.env.PORT || 3001;
 const apiLimiter = rateLimit({
-  windowMs: 10000,
-  max: 50
+  windowMs: 1000, // One second
+  max: 30
 });
 
 // Initialize cache
@@ -28,7 +27,7 @@ app.use('/api', apiLimiter);
 app.use(express.static(path.join(__dirname + '/public')));
 
 // Set routes
-app.use('/api/users', cache('1 minutes'), require('./routes/users'));
+app.use('/api/results', cache('1 minutes'), require('./routes/results'));
 
 // Set cors
 app.use(
@@ -38,11 +37,12 @@ app.use(
 );
 
 // Define responses
-app.get('/api', cache('1 minutes'), (req, res) => {
-  axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
+app.get('/api/home', cache('15 minutes'), (req, res) => {
+  axios
+    .get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
     .then((response) => response.data)
     .then((data) => {
-      console.log(data);
+      console.log('Home page NASA API called');
       res.json(data);
     });
 });
