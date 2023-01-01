@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import axios from 'axios';
 
 class Home extends Component {
   constructor(props) {
@@ -9,8 +10,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('/api')
-      .then((res) => res.json())
+    axios.get('/api')
+      .then((res) => res.data)
       .then((apod) => {
         this.setState({ apod: apod });
       });

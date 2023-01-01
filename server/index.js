@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const apiCache = require('apicache');
+const axios = require('axios');
+const { response } = require('express');
 require('dotenv').config();
 
 // Set variables
@@ -37,12 +39,12 @@ app.use(
 
 // Define responses
 app.get('/api', cache('1 minutes'), (req, res) => {
-  fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
-    .then((response) => response.json())
-    .then((data) =>  {
-      console.log(data)
+  axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
+    .then((response) => response.data)
+    .then((data) => {
+      console.log(data);
       res.json(data);
-    })
+    });
 });
 
 // Start server
