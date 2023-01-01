@@ -9,7 +9,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/home')
+    fetch('/api')
       .then((res) => res.json())
       .then((apod) => {
         this.setState({ apod: apod });

@@ -3,11 +3,12 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const apiCache = require('apicache');
+require('dotenv').config();
 
 // Set variables
 const PORT = process.env.PORT || 3001;
 const apiLimiter = rateLimit({
-  windowMs: 1000000,
+  windowMs: 10000,
   max: 50
 });
 
@@ -26,7 +27,6 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 // Set routes
 app.use('/api/users', cache('1 minutes'), require('./routes/users'));
-app.use('/api/home', cache('10 minutes'), require('./routes/home'));
 
 // Set cors
 app.use(
@@ -36,8 +36,13 @@ app.use(
 );
 
 // Define responses
-app.get('/', cache('1 minutes'), (req, res) => {
-  res.send('hello world from express');
+app.get('/api', cache('1 minutes'), (req, res) => {
+  fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
+    .then((response) => response.json())
+    .then((data) =>  {
+      console.log(data)
+      res.json(data);
+    })
 });
 
 // Start server
