@@ -10,7 +10,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api')
+    axios.get('/api/home')
       .then((res) => res.data)
       .then((apod) => {
         this.setState({ apod: apod });
