@@ -1,1 +1,1 @@
-Job history app with react frontend and nodejs/express backend
+React frontend and express backend for NASA Image Search
