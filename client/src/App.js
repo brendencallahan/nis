@@ -1,8 +1,8 @@
-import Users from './components/Users'
+import Home from './components/Home'
 
 function App() {
   return (
-    <Users />
+    <Home />
   );
 }
 

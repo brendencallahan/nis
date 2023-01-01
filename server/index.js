@@ -1,15 +1,15 @@
 const rateLimit = require('express-rate-limit');
 const express = require('express');
-const env = require('dotenv');
 const path = require('path');
 const cors = require('cors');
 const apiCache = require('apicache');
+require('dotenv').config();
 
 // Set variables
 const PORT = process.env.PORT || 3001;
 const apiLimiter = rateLimit({
   windowMs: 1000000,
-  max: 10
+  max: 50
 });
 
 // Initialize cache
@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 // Set routes
 app.use('/api/users', cache('1 minutes'), require('./routes/users'));
+app.use('/api/home', cache('10 minutes'), require('./routes/home'));
 
 // Set cors
 /* app.use(
@@ -36,7 +37,7 @@ app.use('/api/users', cache('1 minutes'), require('./routes/users'));
 ); */
 
 // Define responses
-app.get('/api', cache('1 minutes'), (req, res) => {
+app.get('/', cache('1 minutes'), (req, res) => {
   res.send('hello world from express');
 });
 
