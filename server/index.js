@@ -37,14 +37,23 @@ app.use(
 );
 
 // Define responses
+
+// Say hello
+app.get('/api', cache('1 minutes'), (req, res) => {
+  res.send('<h1>Welcome to NASA Image Search<h1>');
+});
+
+// Image of the Day
 app.get('/api/home', cache('15 minutes'), (req, res) => {
-  axios
-    .get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
-    .then((response) => response.data)
-    .then((data) => {
-      console.log('Home page NASA API called');
-      res.json(data);
-    });
+  const getAposData = async () => {
+    const aposRes = await axios.get(
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
+    );
+    const aposData = await aposRes.data;
+    console.log('Home page NASA API called');
+    res.json(aposData);
+  };
+  getAposData();
 });
 
 // Start server

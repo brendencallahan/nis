@@ -1,30 +1,26 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      apod: []
+export default function Home() {
+  const [apod, setApod] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const resp = await axios.get('/api/home');
+      const data = await resp.data;
+      setApod(data);
     };
-  }
 
-  componentDidMount() {
-    axios.get('/api/home')
-      .then((res) => res.data)
-      .then((apod) => {
-        this.setState({ apod: apod });
-      });
-  }
+    fetchData();
+  }, []);
 
-  render() {
-    return (
-      <ul>
-        <h1>{this.state.apod.title}</h1>
-        <img src={this.state.apod.url} alt=""></img>
-      </ul>
-    );
-  }
+  return (
+    <>
+      <h1 className='underline'>{apod.title}</h1>
+      <img
+        src={apod.url}
+        alt=''
+      ></img>
+    </>
+  );
 }
-
-export default Home;

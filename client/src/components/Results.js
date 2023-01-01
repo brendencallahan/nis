@@ -1,16 +1,30 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-async function getImage() {
-      const resp = await axios.get('/api/results');
-      const data = await resp.data;
-      return data;
-    }
-
 export default function Results() {
   const [users, setUsers] = useState([]);
 
-  setUsers(getImage());
+  useEffect(() => {
+    const fetchData = async () => {
+      const resp = await axios.get('/api/results');
+      const data = await resp.data;
+      setUsers(data);
+    };
 
-  return <h1>{users.age}</h1>;
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <ul>
+        {users.map((data) => {
+          return (
+            <li key={data.username}>
+              Username is {data.username} Age is {data.age}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
