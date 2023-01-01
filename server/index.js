@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const apiCache = require('apicache');
-require('dotenv').config();
 
 // Set variables
 const PORT = process.env.PORT || 3001;
