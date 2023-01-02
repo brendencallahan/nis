@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function Results() {
+export default function Result() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

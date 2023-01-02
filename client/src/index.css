@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  * {
+    font-family: 'Varela Round', Helvetica, sans-serif;
+  }
+  .nis-font {
+    font-family: Audiowide, sans-serif;
+  }
+}
