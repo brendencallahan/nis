@@ -1,13 +1,9 @@
-import Results from './components/Results';
-import Home from './components/Home';
+import HomePage from './pages/HomePage';
 
-function App() {
+export default function App() {
   return (
     <>
-      <Home />
-      <Results />
+      <HomePage />
     </>
   );
 }
-
-export default App;
