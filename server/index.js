@@ -30,11 +30,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.use('/api/results', cache('1 minutes'), require('./routes/results'));
 
 // Set cors
-app.use(
-  cors({
-    origin: '*'
-  })
-);
+app.use(cors());
 
 // Define responses
 
