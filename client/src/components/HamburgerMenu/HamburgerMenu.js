@@ -1,3 +1,3 @@
 export default function HamburgerMenu() {
-  return <h1>test</h1>;
+  return <h1 className="text-xl">test</h1>;
 }

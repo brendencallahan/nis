@@ -33,13 +33,13 @@ export default function Apod() {
     );
   } else
     return (
-      <article className="">
-        <img className="md:px-8" src={apod.url} alt=""></img>
-        <div className="md:px-8 text-xs flex">
+      <article className="pt-0.5">
+        <img className="" src={apod.url} alt=""></img>
+        <div className="text-xs flex">
           <p className="">©{apod.copyright}</p>
           <p className="ml-auto">{apod.date}</p>
         </div>
-        <h2 className="text-center font-bold py-5 text-lg">{apod.title}</h2>
+        <h2 className="text-center font-bold py-8 text-lg">{apod.title}</h2>
         <p className={`${[...readMore]}`}>{apod.explanation}</p>
         <button
           className={`underline w-[100%] ${[...buttonHidden]}`}
