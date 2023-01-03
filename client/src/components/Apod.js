@@ -6,7 +6,7 @@ export default function Apod() {
   const [apod, setApod] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [readMore, setReadMore] = useState(['line-clamp-2']);
+  const [readMore, setReadMore] = useState(['line-clamp-3']);
   const [buttonHidden, setButtonHidden] = useState([]);
 
   useEffect(() => {
@@ -26,23 +26,23 @@ export default function Apod() {
   }, []);
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2 className="text-center py-5">Loading...</h2>;
   } else if (error) {
-    return <h2>Error getting picture of the day...</h2>;
+    return (
+      <h2 className="text-center py-5">Error getting picture of the day...</h2>
+    );
   } else
     return (
       <article className="">
-        <img className="px-10" src={apod.url} alt=""></img>
-        <div className="px-10 flex">
-          <p className="">{apod.copyright}</p>
+        <img className="md:px-8" src={apod.url} alt=""></img>
+        <div className="md:px-8 text-xs flex">
+          <p className="">©{apod.copyright}</p>
           <p className="ml-auto">{apod.date}</p>
         </div>
-        <h2 className="text-center font-bold my-5">{apod.title}</h2>
-        <p id="read-more" className={`${[...readMore]}`}>
-          {apod.explanation}
-        </p>
+        <h2 className="text-center font-bold py-5 text-lg">{apod.title}</h2>
+        <p className={`${[...readMore]}`}>{apod.explanation}</p>
         <button
-          className={`underline font-semibold w-[100%] ${[...buttonHidden]}`}
+          className={`underline w-[100%] ${[...buttonHidden]}`}
           onClick={() => {
             setReadMore([]);
             setButtonHidden(['hidden']);
