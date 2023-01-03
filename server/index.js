@@ -10,7 +10,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3001;
 const apiLimiter = rateLimit({
   windowMs: 1000, // One second
-  max: 30
+  max: 10
 });
 
 // Initialize cache
@@ -27,7 +27,7 @@ app.use('/api', apiLimiter);
 app.use(express.static(path.join(__dirname + '/public')));
 
 // Set routes
-app.use('/api/results', cache('1 minutes'), require('./routes/results'));
+app.use('/api/results', cache('15 minutes'), require('./routes/results'));
 
 // Set cors
 app.use(cors());
@@ -35,12 +35,12 @@ app.use(cors());
 // Define responses
 
 // Say hello
-app.get('/api', cache('1 minutes'), (req, res) => {
+app.get('/api', cache('15 minutes'), (req, res) => {
   res.send('<h1>Welcome to NASA Image Search<h1>');
 });
 
 // Image of the Day
-app.get('/api/home', cache('15 minutes'), (req, res) => {
+app.get('/api/home', cache('60 minutes'), (req, res) => {
   const getAposData = async () => {
     const aposRes = await axios.get(
       `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
