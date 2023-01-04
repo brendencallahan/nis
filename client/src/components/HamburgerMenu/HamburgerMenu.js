@@ -1,3 +1,5 @@
 export default function HamburgerMenu() {
-  return <h1 className="text-xl">test</h1>;
+  return ( //placeholder to test dark mode
+    <button onClick={() => {document.body.classList.toggle("dark")}}>Theme</button>
+  );
 }
