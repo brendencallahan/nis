@@ -33,12 +33,19 @@ export default function Apod() {
     );
   } else
     return (
-      <article className="pt-0.5">
+      <article className="">
         <img className="" src={apod.url} alt=""></img>
-        <div className="text-xs flex">
-          <p className="">©{apod.copyright}</p>
-          <p className="ml-auto">{apod.date}</p>
-        </div>
+          {apod.copyright.length > 0 ? (
+            <div className="text-xs flex">
+              <p className="">©{apod.copyright}</p>
+              <p className="ml-auto">{apod.date}</p>
+            </div>
+          ) : (
+            <div className="text-xs flex">
+              <p className="">Pic of the Day</p>
+              <p className="ml-auto">{apod.date}</p>
+            </div>
+          )}
         <h2 className="text-center font-bold py-8 text-lg">{apod.title}</h2>
         <p className={`${[...readMore]}`}>{apod.explanation}</p>
         <button
