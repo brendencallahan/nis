@@ -15,6 +15,7 @@ export default function Apod() {
     return useMemo(() => new URLSearchParams(search), [search]);
   }
 
+  useEffect(() => {
   const fetchData = async (params) => {
     try {
       const resp = await axios.get(
@@ -25,7 +26,6 @@ export default function Apod() {
       const data = await resp.data;
       setResults(data);
       setIsLoading(false);
-      setPage((old) => old + 1);
     } catch (err) {
       console.log(err);
       setIsLoading(false);
@@ -33,7 +33,6 @@ export default function Apod() {
     }
   };
 
-  useEffect(() => {
     fetchData(query);
   }, [query]);
 
