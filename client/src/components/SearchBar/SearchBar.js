@@ -1,10 +1,9 @@
+import { Form } from 'react-router-dom';
+
 export default function SearchBar() {
   return (
-    <form>
-      <label
-        for="default-search"
-        className="mb-2 text-sm font-medium sr-only"
-      >
+    <Form method="get" action="/search">
+      <label for="default-search" className="mb-2 text-sm font-medium sr-only">
         Search
       </label>
       <div className="relative text-slate-700 focus-within:text-slate-400">
@@ -32,14 +31,18 @@ export default function SearchBar() {
         <input
           type="search"
           id="default-search"
+          name='q'
           className="focus-within:text-slate-900 block w-full mb-[3.25rem] p-4 pl-10 text-md outline outline-offset-0 outline-1 rounded-md outline-cyan-800"
           placeholder="Search..."
           required
         />
-        <button type="submit" className="absolute right-2.5 bottom-2.5 px-2 pt-2 pb-[0.35rem]">
+        <button
+          type="submit"
+          className="absolute right-2.5 bottom-2.5 px-2 pt-2 pb-[0.35rem]"
+        >
           Test
         </button>
       </div>
-    </form>
+    </Form>
   );
 }
