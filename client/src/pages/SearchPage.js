@@ -34,41 +34,43 @@ export default function Apod() {
   };
 
     fetchData(query);
-  }, [query]);
+  }, [query, page]);
 
   if (isLoading) {
     return (
-      <>
+      <div>
         <SearchBar />
         <h2 className="text-center py-5">Loading...</h2>;
-      </>
+      </div>
     );
   } else if (error) {
     return (
-      <>
+      <div>
         <SearchBar />
         <h2 className="text-center py-5">
           Error getting picture of the day...
         </h2>
-      </>
+      </div>
     );
   } else
     return (
       <>
-        <SearchBar />
+        <SearchBar/>
+      <div className=''>
         {results.collection.items.map((result) => {
           return (
             <div>
               <h1>{result.data[0].title}</h1>
               <img
-                className="min-w-full"
+                className="w-full"
                 loading="lazy"
                 src={result.links[0].href}
                 alt=""
-              />
+                />
             </div>
           );
         })}
-      </>
+      </div>
+        </>
     );
 }

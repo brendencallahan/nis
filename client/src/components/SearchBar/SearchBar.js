@@ -32,7 +32,7 @@ export default function SearchBar() {
           type="search"
           id="default-search"
           name='q'
-          className="focus-within:text-slate-900 block w-full mb-[3.25rem] p-4 pl-10 text-md outline outline-offset-0 outline-1 rounded-md outline-cyan-800"
+          className="focus-within:text-slate-900 block w-full mb-[3.25rem] p-4 pl-10 text-md border border-1 border-blue-light rounded-md outline-cyan-800"
           placeholder="Search..."
           required
         />
