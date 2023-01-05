@@ -1,4 +1,4 @@
-# In progress project. Not representative of the final product.
+# In progress project. First release planned for mid Feb 2023.
 
 React frontend and express backend for NASA Image Search
 
