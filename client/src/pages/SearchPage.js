@@ -26,7 +26,6 @@ export default function Apod() {
       const data = await resp.data;
       setResults(data);
       setIsLoading(false);
-      setPage((old) => old + 1);
     } catch (err) {
       console.log(err);
       setIsLoading(false);
@@ -35,7 +34,7 @@ export default function Apod() {
   };
 
     fetchData(query);
-  }, [query, page]);
+  }, [query]);
 
   if (isLoading) {
     return (
