@@ -33,9 +33,6 @@ app.use('/api/results', cache('15 minutes'), require('./routes/results'));
 app.use(cors());
 
 // Define responses
-app.get('*', function(req, res) {
-  res.sendFile('index.html', {root: path.join(__dirname, '/public/')})
-})
 
 // Say hello
 app.get('/api', cache('15 minutes'), (req, res) => {
@@ -53,6 +50,9 @@ app.get('/api/home', cache('60 minutes'), (req, res) => {
     res.json(aposData);
   };
   getAposData();
+});
+app.get('*', function (req, res) {
+  res.sendFile('index.html', { root: path.join(__dirname, '/public/') });
 });
 
 // Start server

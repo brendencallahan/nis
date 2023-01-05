@@ -14,6 +14,7 @@ export default function Apod() {
       try {
         const resp = await axios.get('/api/home');
         const data = await resp.data;
+        console.log(data)
         setApod(data);
         setIsLoading(false);
       } catch (err) {
@@ -35,7 +36,7 @@ export default function Apod() {
     return (
       <article className="">
         <img className="" src={apod.url} alt=""></img>
-          {apod.copyright.length > 0 ? (
+          {apod.copyright ? (
             <div className="text-xs flex">
               <p className="">©{apod.copyright}</p>
               <p className="ml-auto">{apod.date}</p>
