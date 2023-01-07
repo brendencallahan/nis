@@ -6,7 +6,7 @@ export default function SearchBar() {
       <label for="default-search" className="mb-2 text-sm font-medium sr-only">
         Search
       </label>
-      <div className="relative text-slate-700 focus-within:text-slate-400">
+      <div className="relative dark:text-gray-light dark:focus-within:text-slate-400 text-gray-dark focus-within:text-slate-400">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 ">
           <span>
             <button type="submit" className="flex items-center">
@@ -32,13 +32,13 @@ export default function SearchBar() {
           type="search"
           id="default-search"
           name='q'
-          className="focus-within:text-slate-900 block w-full mb-[3.25rem] p-4 pl-10 text-md border border-1 border-blue-light rounded-md outline-cyan-800"
+          className="dark:focus-within:text-base-light focus-within:text-base-dark block w-full mb-[3.25rem] p-4 pl-10 text-md border-2 border-blue-dark rounded-md dark:bg-base-dark bg-gray-light"
           placeholder="Search..."
           required
         />
         <button
           type="submit"
-          className="absolute right-2.5 bottom-2.5 px-2 pt-2 pb-[0.35rem]"
+          className="dark:text-gray-light text-gray-dark absolute right-2.5 bottom-2.5 px-2 pt-2 pb-[0.35rem]"
         >
           Test
         </button>

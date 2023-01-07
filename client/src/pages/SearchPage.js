@@ -1,4 +1,5 @@
 import SearchBar from '../components/SearchBar/SearchBar';
+import Result from '../components/Result';
 import { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -54,23 +55,15 @@ export default function Apod() {
     );
   } else
     return (
-      <>
+      <div className='pt-10'>
         <SearchBar/>
-      <div className=''>
+      <div>
         {results.collection.items.map((result) => {
           return (
-            <div>
-              <h1>{result.data[0].title}</h1>
-              <img
-                className="w-full"
-                loading="lazy"
-                src={result.links[0].href}
-                alt=""
-                />
-            </div>
+            <Result result={result} />
           );
         })}
       </div>
-        </>
+        </div>
     );
 }

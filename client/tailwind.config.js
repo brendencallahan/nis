@@ -9,7 +9,7 @@ module.exports = {
         'gray-light': '#f1f1f1',
         'blue-light': '#9bdaf1',
         'blue-dark': '#046b99',
-        'base-dark': '#212121',
+        'base-dark': '#161b22',
         'base-light': '#fff'
       }
     }

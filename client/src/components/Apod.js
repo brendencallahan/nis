@@ -35,7 +35,7 @@ export default function Apod() {
   } else
     return (
       <article className="">
-        <img className="border border-1 w-full" src={apod.url} alt=""></img>
+        <img className="w-full shadow-lg" src={apod.url} alt=""></img>
         <div className="opacity-50 pt-[5px] text-xs flex">
           {apod.copyright ? (
             <p className="">©{apod.copyright}</p>
@@ -47,7 +47,7 @@ export default function Apod() {
         <h2 className="text-center font-bold py-8 text-lg">{apod.title}</h2>
         <p className={`${[...readMore]}`}>{apod.explanation}</p>
         <button
-          className={`underline w-full ${[...buttonHidden]}`}
+          className={`shadow-lg underline w-full ${[...buttonHidden]}`}
           onClick={() => {
             setReadMore([]);
             setButtonHidden(['hidden']);
