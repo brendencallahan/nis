@@ -47,7 +47,7 @@ export default function Apod() {
         <h2 className="text-center font-bold py-8 text-lg">{apod.title}</h2>
         <p className={`${[...readMore]}`}>{apod.explanation}</p>
         <button
-          className={`shadow-lg underline w-full ${[...buttonHidden]}`}
+          className={` underline w-full ${[...buttonHidden]}`}
           onClick={() => {
             setReadMore([]);
             setButtonHidden(['hidden']);
