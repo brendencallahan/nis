@@ -29,7 +29,7 @@ export default function Apod() {
         );
         const data = await resp.data;
         setResults(data.collection.items);
-        setCulledResults([data.collection.items.slice(0, 25)])
+        setCulledResults(data.collection.items.slice(0, 25))
         setIsLoading(false);
       } catch (err) {
         console.log(err);
