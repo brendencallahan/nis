@@ -1,17 +1,17 @@
-import SearchBar from '../components/SearchBar/SearchBar';
-import Result from '../components/Result';
-import cullResults from '../utils/cullResults';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import cullResults from '../utils/cullResults';
+import getResults from '../utils/getResults';
+import SearchBar from '../components/SearchBar/SearchBar';
+import Result from '../components/Result';
 
 export default function Apod() {
   const [results, setResults] = useState([]);
   const [culledResults, setCulledResults] = useState([]);
   const [mainPage, setMainPage] = useState(1);
-  const [subPage, setSubPage] = useState(1); // For intersection observer
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const lastPic = useRef(null);
   const query = useQuery();
 
   function useQuery() {
@@ -20,57 +20,54 @@ export default function Apod() {
   }
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
     const fetchData = async (params) => {
       try {
-        const resp = await axios.get(
-          `https://images-api.nasa.gov/search?q=${params.get(
-            'q'
-          )}&page=${mainPage}&media_type=image`
-        );
-        const data = await resp.data;
-        setResults(data.collection.items);
-        setCulledResults(data.collection.items.slice(0, 25))
-        setIsLoading(false);
+        setResults(await getResults(query, mainPage));
       } catch (err) {
+        if (axios.isCancel(err)) {
+          console.log(err.message);
+        }
         console.log(err);
-        setIsLoading(false);
-        setError(err);
       }
     };
-
     fetchData(query);
+
+    return () => {
+      source.cancel('Interrupted request');
+    };
   }, [query, mainPage]);
 
-  useEffect(() => {
-    setCulledResults((old) => [...old, ...cullResults(results, subPage)]);
-  }, [results, subPage])
+  const getMorePics = (entries) => {
+    const [entry] = entries;
+    setIsVisible(entry.isIntersecting);
+  };
 
-  if (isLoading) {
-    return (
+  useEffect(() => {
+    const options = { root: null, rootMargin: '0px', threshold: 0.5 };
+    const observer = new IntersectionObserver(getMorePics, options);
+    const disconnectPic = lastPic.current
+
+    if (lastPic.current) observer.observe(lastPic.current);
+
+    return () => {
+      if (disconnectPic) observer.unobserve(disconnectPic);
+    };
+  }, [lastPic]);
+
+  return (
+    <div className="pt-10">
+      <SearchBar />
       <div>
-        <SearchBar />
-        <h2 className="text-center py-5">Loading...</h2>;
+        {results.map((result, i) => {
+          return i === 24 ? (
+            <Result result={result} ref={lastPic} />
+          ) : (
+            <Result result={result} />
+          );
+        })}
       </div>
-    );
-  } else if (error) {
-    return (
-      <div>
-        <SearchBar />
-        <h2 className="text-center py-5">
-          Error getting picture of the day...
-        </h2>
-      </div>
-    );
-  } else
-    return (
-      <div className="pt-10">
-        <SearchBar />
-        <div>
-          {culledResults.map((result) => {
-            return <Result result={result} />;
-          })}
-        </div>
-        <div id='element-to-observe'></div>
-      </div>
-    );
+      <div>{isVisible ? "HEYEYYEYE" : "HMMMMMMM"}</div>
+    </div>
+  );
 }
