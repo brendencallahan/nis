@@ -1,15 +1,6 @@
 export default function Result({ result }) {
   return (
     <div>
-      {/* <h1 className="text-bold text-2xl text-center mb-5 mt-10">
-        {result.data[0].title}
-      </h1>
-      <img
-        className="w-full border border-gray-dark"
-        loading="lazy"
-        src={result.links[0].href}
-        alt=""
-      /> */}
       <div className="flex justify-center">
         <div className="rounded-lg shadow-lg w-full">
           <div className="py-6 px-2">

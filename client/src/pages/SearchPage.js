@@ -10,7 +10,7 @@ export default function Apod() {
   const [results, setResults] = useState([]);
   const [culledResults, setCulledResults] = useState([]);
   const [mainPage, setMainPage] = useState(1);
-  const [isVisible, setIsVisible] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const lastPic = useRef(null);
   const query = useQuery();
 
@@ -23,7 +23,8 @@ export default function Apod() {
     const source = axios.CancelToken.source();
     const fetchData = async (params) => {
       try {
-        setResults(await getResults(query, mainPage));
+        setResults(await getResults(query, 1)); //Second argument is page to get. Start with 1 on new queries
+        setLoaded(true);
       } catch (err) {
         if (axios.isCancel(err)) {
           console.log(err.message);
@@ -36,38 +37,46 @@ export default function Apod() {
     return () => {
       source.cancel('Interrupted request');
     };
-  }, [query, mainPage]);
+  }, [query]);
 
   const getMorePics = (entries) => {
     const [entry] = entries;
-    setIsVisible(entry.isIntersecting);
+    let isLeaving = false;
+    if (entry.isIntersecting) {
+      console.log(entry);
+      isLeaving = true; // May need to remove. Pic jumping down might leave this as true
+    } else if (isLeaving) {
+      isLeaving = false;
+    }
   };
 
   useEffect(() => {
-    const options = { root: null, rootMargin: '0px', threshold: 0.5 };
-    const observer = new IntersectionObserver(getMorePics, options);
-    const disconnectPic = lastPic.current
 
-    if (lastPic.current) observer.observe(lastPic.current);
+      const options = { root: null, rootMargin: '200%', threshold: 0 };
+      const observer = new IntersectionObserver(getMorePics, options);
+      const disconnectPic = lastPic.current;
 
-    return () => {
-      if (disconnectPic) observer.unobserve(disconnectPic);
-    };
+      if (lastPic.current) observer.observe(lastPic.current);
+      return () => {
+        if (disconnectPic) observer.unobserve(disconnectPic);
+      };
   }, [lastPic]);
 
   return (
     <div className="pt-10">
       <SearchBar />
-      <div>
-        {results.map((result, i) => {
-          return i === 24 ? (
-            <Result result={result} ref={lastPic} />
-          ) : (
-            <Result result={result} />
-          );
-        })}
-      </div>
-      <div>{isVisible ? "HEYEYYEYE" : "HMMMMMMM"}</div>
+      {!loaded ? (
+        <div className='h-screen'>Loading...</div>
+      ) : (
+        <>
+          <div>
+            {results.map((result) => {
+              return <Result result={result} />;
+            })}
+          </div>
+        </>
+      )}
+      <div ref={lastPic}></div>
     </div>
   );
 }
