@@ -6,5 +6,5 @@ export default async function getResults(query, mainPage) {
       'q'
     )}&page=${mainPage}&media_type=image`
   );
-  return resp.data.collection.items.slice(0, 24);
+  return resp.data.collection.items;
 }
