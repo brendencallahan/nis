@@ -1,5 +1,8 @@
 # In progress project. First release planned for mid Feb 2023.
 
+### Preview here https://nis.up.railway.app/
+### Final build expected mid-February. (Options menus not implemented touch top right icon to change to dark mode)
+
 React frontend and express backend for NASA Image Search
 
 
