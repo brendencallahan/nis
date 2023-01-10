@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import cullResults from '../utils/cullResults';
@@ -23,11 +23,11 @@ export default function Apod() {
     const source = axios.CancelToken.source();
     const fetchData = async (params) => {
       try {
-        const data = await getResults(query, 1)
+        const data = await getResults(query, 1);
         setResults(data.slice(25)); //Second argument is page to get. Start with 1 on new queries
-        setCulledResults(data.slice(0, 24));
+        setCulledResults(data.slice(0, 25));
         setLoaded(true);
-        setPage(1);
+        setPage(2);
       } catch (err) {
         if (axios.isCancel(err)) {
           console.log(err.message);
@@ -42,23 +42,31 @@ export default function Apod() {
     };
   }, [query]);
 
-  const getMorePics = (entries) => {
-    const [entry] = entries;
-    let isLeaving = false;
-    if (entry.isIntersecting) {
-      setCulledResults((old) => [...old, ...cullResults(results, page)])
-      setPage((page) => page + 1);
-      console.log(entry);
-      isLeaving = true; // May need to remove. Pic jumping down might leave this as true
-    } else if (isLeaving) {
-      isLeaving = false;
-    }
-  };
-
   useEffect(() => {
     if (loaded) {
       const options = { root: null, rootMargin: '200%', threshold: 0 };
-      const observer = new IntersectionObserver(getMorePics, options);
+      const observer = new IntersectionObserver((entries) => {
+        const [entry] = entries;
+        let isLeaving = false;
+        if (entry.isIntersecting && results.length >= 1) {
+          setCulledResults((old) => [...old, ...cullResults(results, 1)]);
+          setResults((old) => [...old.slice(25)])
+          console.log(page);
+          isLeaving = true; // May need to remove. Pic jumping down might leave this as true
+        } else if (isLeaving) {
+          isLeaving = false;
+        } else if (entry.isIntersecting && results.length <= 0) {
+
+          const loadMore = async () => {
+            const data = await getResults(query, page)
+            setResults(data.slice(25))
+            setCulledResults((old) => [...old, ...data.slice(0, 25)]);
+            setPage((page) => page + 1)
+          }
+
+          loadMore();
+        }
+      }, options);
       const disconnectPic = lastPic.current;
 
       if (lastPic.current) observer.observe(lastPic.current);
@@ -66,7 +74,7 @@ export default function Apod() {
         if (disconnectPic) observer.unobserve(disconnectPic);
       };
     }
-  }, [lastPic, loaded]);
+  }, [lastPic, loaded, results, page, query]);
 
   return (
     <div className='pt-10'>
