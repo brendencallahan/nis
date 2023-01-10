@@ -11,6 +11,7 @@ export default function Apod() {
   const [culledResults, setCulledResults] = useState([]);
   const [page, setPage] = useState(1);
   const [loaded, setLoaded] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
   const lastPic = useRef(null);
   const query = useQuery();
 
@@ -24,10 +25,17 @@ export default function Apod() {
     const fetchData = async (params) => {
       try {
         const data = await getResults(query, 1);
-        setResults(data.slice(25)); //Second argument is page to get. Start with 1 on new queries
-        setCulledResults(data.slice(0, 25));
-        setLoaded(true);
-        setPage(2);
+        if (data.length > 0) {
+          setResults(data.slice(25));
+          setCulledResults(data.slice(0, 25));
+          setLoaded(true);
+          setHasMore(true);
+          setPage(2);
+        }
+        else {
+          setLoaded(true);
+          setHasMore(false);
+        }
       } catch (err) {
         if (axios.isCancel(err)) {
           console.log(err.message);
@@ -49,20 +57,29 @@ export default function Apod() {
         const [entry] = entries;
         let isLeaving = false;
         if (entry.isIntersecting && results.length >= 1) {
-          setCulledResults((old) => [...old, ...cullResults(results, 1)]);
-          setResults((old) => [...old.slice(25)])
+          setCulledResults((old) => [...old, ...cullResults(results, 1)]); //second arg to cull... is multiple of 25 to include. i.e. 1 = 25, 2 = 50, etc.
+          setResults((old) => [...old.slice(25)]);
           console.log(page);
           isLeaving = true; // May need to remove. Pic jumping down might leave this as true
         } else if (isLeaving) {
           isLeaving = false;
         } else if (entry.isIntersecting && results.length <= 0) {
-
           const loadMore = async () => {
-            const data = await getResults(query, page)
-            setResults(data.slice(25))
-            setCulledResults((old) => [...old, ...data.slice(0, 25)]);
-            setPage((page) => page + 1)
-          }
+            try {
+              const data = await getResults(query, page);
+              if (data.length > 0) {
+                setResults(data.slice(25));
+                setCulledResults((old) => [...old, ...data.slice(0, 25)]);
+                setPage((page) => page + 1);
+                setHasMore(true);
+              } else {
+                setHasMore(false);
+              }
+            } catch (err) {
+              console.log(err);
+              setHasMore(false);
+            }
+          };
 
           loadMore();
         }
@@ -77,19 +94,17 @@ export default function Apod() {
   }, [lastPic, loaded, results, page, query]);
 
   return (
-    <div className='pt-10'>
+    <div className="pt-10">
       <SearchBar />
       {!loaded ? (
-        <div className='h-screen'>Loading...</div>
+        <div className="h-screen">Loading...</div>
       ) : (
-        <>
           <div>
             {culledResults.map((result) => {
-              return <Result result={result} />;
+              return <Result result={result} />; //TODO: Add nasa_id as key
             })}
-            <div ref={lastPic}></div>
+            {hasMore ? <div ref={lastPic}></div> : <p className='mt-2.5 text-center'>End of Results...</p>}
           </div>
-        </>
       )}
     </div>
   );
