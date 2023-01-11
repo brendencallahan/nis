@@ -1,4 +1,5 @@
 import HamburgerMenu from './HamburgerMenu/HamburgerMenu';
+import ScrollTop from './ScrollTop'
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
@@ -10,6 +11,7 @@ export default function NavBar() {
       <Link to="/" className="text-xl nis-font">
         NIS
       </Link>
+      <ScrollTop />
       <HamburgerMenu />
     </div>
   );
