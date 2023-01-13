@@ -3,20 +3,12 @@ import HamburgerModal from './HamburgerModal';
 import useBlockClicks from '../../utils/useBlockClicks';
 
 export default function HamburgerMenu() {
-  const { ref, secondaryRef, shouldBlock, setShouldBlock } = useBlockClicks(false);
-
-  const handleOpening = () => {
-    setShouldBlock((current) => !current);
-    if (document.body.style.overflow ==='hidden') { //This prevents scrolling. Will still allow clicking on up arrow and "logo"
-      document.body.style.overflow = '';
-    } else {
-      document.body.style.overflow = 'hidden';
-    }
-  };
+  const [ ref, shouldBlock ] = useBlockClicks(true);
 
   return (
     <>
-      <button onClick={handleOpening} className="relative" ref={secondaryRef}>
+        <div className="" ref={ref}>
+      <button className="relative" >
         <svg
           className="fill-base-dark dark:fill-gray-light"
           viewBox="0 0 100 80"
@@ -28,8 +20,7 @@ export default function HamburgerMenu() {
           <rect y="60" width="100" height="12.5" rx="10"></rect>
         </svg>
       </button>
-      <div className='absolute' ref={ref}>
-      {shouldBlock && <HamburgerModal />}
+        {shouldBlock  &&<HamburgerModal />}
       </div>
     </>
   );
