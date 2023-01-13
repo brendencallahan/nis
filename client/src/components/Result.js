@@ -1,7 +1,7 @@
 export default function Result({ result }) {
   return (
-    <div>
-      <div className="flex justify-center">
+    <>
+      <article className="flex justify-center">
         <div className="rounded-lg shadow-lg w-full">
           <div className="py-6 px-2">
             <div className="text-gray-dark dark:text-slate-400 text-xl font-medium mb-2 mt-5 flex">
@@ -16,7 +16,7 @@ export default function Result({ result }) {
           </div>
           <img className="w-full" src={result.links[0].href} alt="" />
         </div>
-      </div>
-    </div>
+      </article>
+    </>
   );
 }

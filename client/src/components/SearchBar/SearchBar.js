@@ -1,6 +1,6 @@
 import { Form } from 'react-router-dom';
 
-export default function SearchBar() {
+export default function SearchBar({ query }) {
   return (
     <Form method="get" action="/search">
       <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only">
@@ -33,7 +33,9 @@ export default function SearchBar() {
           id="default-search"
           name="q"
           className="dark:focus-within:text-base-light focus-within:text-base-dark block w-full mb-[3.25rem] p-4 pl-10 text-md border-2 border-blue-dark rounded-md dark:bg-base-dark bg-gray-light"
-          placeholder="Search..."
+          placeholder={"Search..."}
+          defaultValue={query || ""}
+          key={query}
           required
         />
         <button

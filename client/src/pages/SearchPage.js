@@ -57,7 +57,7 @@ export default function Apod() {
         const [entry] = entries;
         let isLeaving = false;
         if (entry.isIntersecting && results.length >= 1) {
-          setCulledResults((old) => [...old, ...cullResults(results, 1)]); //second arg to cull... is multiple of 25 to include. i.e. 1 = 25, 2 = 50, etc.
+          setCulledResults((old) => [...old, ...cullResults(results, 1)]); //second arg to cullResults is multiple of 25 to include. i.e. 1 = 25, 2 = 50, etc.
           setResults((old) => [...old.slice(25)]);
           console.log(page);
           isLeaving = true; // May need to remove. Pic jumping down might leave this as true
@@ -95,7 +95,7 @@ export default function Apod() {
 
   return (
     <div className="pt-10">
-      <SearchBar />
+      <SearchBar query={query.get('q')} />
       {!loaded ? (
         <div className="h-screen">Loading...</div>
       ) : (
