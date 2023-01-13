@@ -6,12 +6,12 @@ export default function Apod() {
   const [apod, setApod] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [readMore, setReadMore] = useState(['line-clamp-1']);
+  const [readMore, setReadMore] = useState(['line-clamp-3']);
   const [isTextShowing, setIsTextShowing] = useState(false);
 
   function handleShowMore() {
     if (readMore.length === 0) {
-      setReadMore(['line-clamp-1']);
+      setReadMore(['line-clamp-3']);
       console.log('test')
     } else {
       setReadMore([]);
