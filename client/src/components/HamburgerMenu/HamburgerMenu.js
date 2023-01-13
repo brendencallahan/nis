@@ -1,32 +1,36 @@
-import { useRef, useState} from 'react';
-import  { useClickAway } from 'react-use'
+import { useEffect, useState, useRef} from 'react';
 import HamburgerModal from './HamburgerModal';
 
 
 export default function HamburgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef(null);
-  const buttonRef = useRef(null);
+  const ref = useRef(null)
 
-  function handleOpening() {
-    setIsOpen(current => !current)
+  function handleOpening(event) {
+    setIsOpen(!isOpen);
   }
 
-  useClickAway(ref, (event) => {
-    if (buttonRef.current.contains(event.target)) {
-      handleOpening();
-    } else {
+  //TODO: Refactor to be generic. Needs to be used in multiple places.
+  function handleOutsideClicks(event) {
+    if (
+      ref.current && !ref.current.contains(event.target)
+    ) {
       setIsOpen(false);
     }
+  }
 
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClicks)
 
-    console.log("working");
-  })
-
+    return (() => {
+      document.removeEventListener('mousedown', handleOutsideClicks)
+    })
+  }, [])
 
   return (
     <>
-      <button ref={buttonRef}>
+        <div ref={ref}>
+      <button className='pt-[10px]' ref={ref} onClick={handleOpening}>
         <svg
           className="fill-base-dark dark:fill-gray-light"
           viewBox="0 0 100 80"
@@ -38,10 +42,11 @@ export default function HamburgerMenu() {
           <rect y="60" width="100" height="12.5" rx="10"></rect>
         </svg>
       </button>
-      <div className='absolute' ref={ref}>
+      <div className='mt-1 absolute left-0 ml-[2.5vw] md:ml-[15vw] lg:ml-[30vw] my-0 p-0'>
 
-        {isOpen &&<HamburgerModal />}
+      {isOpen &&<HamburgerModal  />}
       </div>
+    </div>
     </>
   );
 }
