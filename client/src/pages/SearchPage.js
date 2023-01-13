@@ -54,7 +54,7 @@ export default function Apod() {
 
 
   //TODO: Refactor :) needs to be broken up more
-  useEffect(() => {
+  useLayoutEffect(() => { //Use layout will prevent the observer loading images twice on first load
     if (loaded) {
       const options = { root: null, rootMargin: '200%', threshold: 0 };
       const observer = new IntersectionObserver((entries) => {
