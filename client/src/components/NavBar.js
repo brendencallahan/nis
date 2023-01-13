@@ -10,7 +10,7 @@ export default function NavBar() {
       className={`
       mb-10 flex justify-between bg-gray-light dark:bg-base-dark py-5 max-w-[95vw] ml-[2.5vw] md:max-w-[70vw] md:ml-[15vw] lg:max-w-[40vw] lg:ml-[30vw]`}
       >
-      <Link to="/" className="text-xl nis-font pt-[8.5px]">
+      <Link to="/" className="text-2xl nis-font pt-[11px]">
         NIS
       </Link>
       <ScrollTop />
