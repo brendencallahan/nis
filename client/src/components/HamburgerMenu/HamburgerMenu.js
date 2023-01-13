@@ -42,7 +42,7 @@ export default function HamburgerMenu() {
           <rect y="60" width="100" height="12.5" rx="10"></rect>
         </svg>
       </button>
-      <div className='mt-1 absolute left-0 ml-[2.5vw] md:ml-[15vw] lg:ml-[30vw] my-0 p-0'>
+      <div className='mt-1 absolute left-0'>
 
       {isOpen &&<HamburgerModal  />}
       </div>
