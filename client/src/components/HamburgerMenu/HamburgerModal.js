@@ -9,7 +9,7 @@ export default function HamburgerModal() {
   return (
     <div
       ref={ref}
-      className="h-auto bg-gray-light dark:bg-base-dark shadow-lg flex flex-col justify-start items-center ml-[calc(4.5vw+.1%)] md:ml-[15vw] lg:ml-[30vw] w-[90vw] md:w-[70vw] lg:w-[40vw] rounded-md border border-base-dark dark:border-gray-light gap-5 py-10 mt-10 text-xl"
+      className="h-auto bg-gray-light dark:bg-base-dark shadow-lg flex flex-col justify-start items-center ml-[5vw] md:ml-[15vw] lg:ml-[30vw] w-[90vw] md:w-[70vw] lg:w-[40vw] rounded-md border border-base-dark dark:border-gray-light gap-5 py-10 mt-10 text-xl"
     >
       <CollectionButton />
       <DarkModeButton />
