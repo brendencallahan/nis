@@ -1,4 +1,5 @@
-export default function Result({ result }) {
+export default function Result({ result, length }) {
+
   return (
     <>
       <article className="flex justify-center">
@@ -6,7 +7,9 @@ export default function Result({ result }) {
           <div className="py-6 px-2">
             <div className="text-gray-dark dark:text-slate-400 text-xl font-medium mb-2 mt-5 flex">
               <h5>{result.data[0].title}</h5>
-              <h5 className="ml-auto">{result.data[0].date_created.substring(0, 10)}</h5>
+              <h5 className="ml-auto">
+                {result.data[0].date_created.substring(0, 10)}
+              </h5>
             </div>
             <p className="text-base-dark dark:text-slate-300 text-base line-clamp-1">
               {result.data[0].description
@@ -14,7 +17,11 @@ export default function Result({ result }) {
                 : 'No description found...'}
             </p>
           </div>
-          <img className="w-full" src={result.links[0].href} alt="" />
+          <img
+            className="w-full"
+            src={result.links[0].href}
+            alt={result.data[0].description || 'No description found'}
+          />
         </div>
       </article>
     </>

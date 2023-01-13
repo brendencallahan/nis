@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import cullResults from '../utils/cullResults';
@@ -20,9 +20,10 @@ export default function Apod() {
     return useMemo(() => new URLSearchParams(search), [search]);
   }
 
+  // Possibly move to new file but this is the only place I'm planning on making a search request.
   useEffect(() => {
     const source = axios.CancelToken.source();
-    const fetchData = async (params) => {
+    const fetchData = async () => {
       try {
         const data = await getResults(query, 1);
         if (data.length > 0) {
@@ -50,6 +51,9 @@ export default function Apod() {
     };
   }, [query]);
 
+
+
+  //TODO: Refactor :) needs to be broken up more
   useEffect(() => {
     if (loaded) {
       const options = { root: null, rootMargin: '200%', threshold: 0 };
@@ -101,7 +105,7 @@ export default function Apod() {
       ) : (
           <div>
             {culledResults.map((result) => {
-              return <Result result={result} />; //TODO: Add nasa_id as key
+              return <Result result={result} length={culledResults.length}/>; //TODO: Add nasa_id as key
             })}
             {hasMore ? <div ref={lastPic}></div> : <p className='mt-2.5 text-center'>End of Results...</p>}
           </div>
