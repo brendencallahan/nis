@@ -30,7 +30,7 @@ export default function HamburgerMenu() {
   return (
     <>
         <div ref={ref}>
-      <button className='pt-[10px]' ref={ref} onClick={handleOpening}>
+      <button className='h-10 pt-[10px]' ref={ref} onClick={handleOpening}>
         <svg
           className="fill-base-dark dark:fill-gray-light"
           viewBox="0 0 100 80"
