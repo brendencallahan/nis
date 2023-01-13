@@ -20,7 +20,7 @@ export default function DarkModeButton() {
   return (
     <button className="" onClick={handleDarkMode}>
       <p>
-    Dark Mode - Light Mode
+    Light Mode - Dark Mode
       </p>
     </button>
   );
