@@ -51,8 +51,6 @@ export default function Apod() {
     };
   }, [query]);
 
-
-
   //TODO: Refactor :) needs to be broken up more
   useLayoutEffect(() => { //Use layout will prevent the observer loading images twice on first load
     if (loaded) {

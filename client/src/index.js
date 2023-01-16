@@ -5,7 +5,7 @@ import Root from './Root';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
-import CollectionPage from './pages/CollectionPage';
+import FavoritesPage from './pages/FavoritesPage';
 import AboutPage from './pages/AboutPage';
 
 import {
@@ -20,7 +20,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Root />}>
       <Route path="" element={<HomePage />} />
       <Route path="search" element={<SearchPage />} />
-      <Route path="collection" element={<CollectionPage />} />
+      <Route path="favorites" element={<FavoritesPage />} />
       <Route path="about" element={<AboutPage />} />
     </Route>
   )
