@@ -103,7 +103,7 @@ export default function Apod() {
       ) : (
           <div>
             {culledResults.map((result) => {
-              return <Result result={result} length={culledResults.length}/>; //TODO: Add nasa_id as key
+              return <Result key={result.nasa_id} result={result} />; //TODO: Add nasa_id as key
             })}
             {hasMore ? <div ref={lastPic}></div> : <p className='mt-2.5 text-center'>End of Results...</p>}
           </div>

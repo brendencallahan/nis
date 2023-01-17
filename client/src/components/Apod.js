@@ -12,7 +12,6 @@ export default function Apod() {
   function handleShowMore() {
     if (readMore.length === 0) {
       setReadMore(['line-clamp-3']);
-      console.log('test')
     } else {
       setReadMore([]);
     }
