@@ -10,7 +10,7 @@ export default function HamburgerMenu() {
   // Close menu when url changes
   useEffect(() => {
     setIsOpen(false);
-  }, [pathname])
+  }, [pathname]);
 
   function handleOpening() {
     if (isOpen) {
@@ -23,6 +23,7 @@ export default function HamburgerMenu() {
   }
 
   //TODO: Refactor to be generic. Needs to be used in multiple places.
+  //useForwardRef might be answer but didn't work first time I tried
   function handleOutsideClicks(event) {
     if (ref.current && !ref.current.contains(event.target)) {
       document.body.style.overflow = 'unset';
@@ -30,7 +31,7 @@ export default function HamburgerMenu() {
     }
   }
 
-  // This will close the menu when you click outside of it
+  // Close the menu when you click outside of it
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClicks);
 
@@ -60,7 +61,7 @@ export default function HamburgerMenu() {
           </div>
         )}
       </div>
-      {/* Closing div above required, so that it is not considered 'inside' the menu (see line 20) */}
+      {/* Closing div required above background, so that it is not considered 'inside' the menu (see line 20) */}
       {isOpen && (
         <div className="mt-1 absolute left-0">
           <div className="w-screen h-screen fixed z-[-1] top-0 bg-gray-light dark:bg-base-dark"></div>
