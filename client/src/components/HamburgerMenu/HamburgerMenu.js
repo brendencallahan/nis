@@ -1,9 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import HamburgerModal from './HamburgerModal';
 
 export default function HamburgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
+  const { pathname } = useLocation();
+
+  // Close menu when url changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname])
 
   function handleOpening() {
     if (isOpen) {
