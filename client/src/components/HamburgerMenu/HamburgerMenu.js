@@ -56,14 +56,14 @@ export default function HamburgerMenu() {
           </svg>
         </button>
         {isOpen && (
-          <div className="mt-1 absolute left-0">
+          <div className="mt-10 ml-[5vw] md:ml-[15vw] lg:ml-[30vw] absolute left-0">
             <HamburgerModal />
           </div>
         )}
       </div>
       {/* Closing div required above background, so that it is not considered 'inside' the menu (see line 20) */}
       {isOpen && (
-        <div className="mt-1 absolute left-0">
+        <div className="absolute left-0">
           <div className="w-screen h-screen fixed z-[-1] top-0 bg-gray-light dark:bg-base-dark"></div>
         </div>
       )}

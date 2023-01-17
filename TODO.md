@@ -9,3 +9,4 @@ add pop-up menu for query paramater selection i.e. when a user clicks the small 
 DONE:
 prevent scroll while menu open
 close menu on route change
+margin right above menu prevents clicking to close

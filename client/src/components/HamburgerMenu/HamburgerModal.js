@@ -8,7 +8,9 @@ export default function HamburgerModal() {
   return (
     <div
       ref={ref}
-      className="z-10 h-auto bg-gray-light dark:bg-base-dark shadow-lg flex flex-col justify-start items-center ml-[5vw] md:ml-[15vw] lg:ml-[30vw] w-[90vw] md:w-[70vw] lg:w-[40vw] rounded-md border border-base-dark dark:border-gray-light gap-5 py-10 mt-10 text-xl"
+      className="bg-gray-light dark:bg-base-dark shadow-lg border-base-dark dark:border-gray-light rounded-md border
+       flex flex-col justify-start items-center
+       h-auto w-[90vw] md:w-[70vw] lg:w-[40vw] gap-5 py-10 text-xl"
       >
       <Link to="/favorites">Favorites</Link>
       <Link to="/about">About</Link>
