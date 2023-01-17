@@ -14,9 +14,12 @@ The figma design I made and am implementing.
 
 
 TODO:
-prevent scroll while menu open
 close menu on route change
-add add show/hide for all descriptions
+add show/hide for all descriptions
 shrink description text size on small devices
+start about page
 add button to favorite item
-start favorites/about page
+start favorites page
+
+DONE:
+prevent scroll while menu open

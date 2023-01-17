@@ -6,12 +6,19 @@ export default function HamburgerMenu() {
   const ref = useRef(null);
 
   function handleOpening() {
-    setIsOpen(!isOpen);
+    if (isOpen) {
+      setIsOpen(false);
+      document.body.style.overflow = 'unset';
+    } else {
+      setIsOpen(true);
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   //TODO: Refactor to be generic. Needs to be used in multiple places.
   function handleOutsideClicks(event) {
     if (ref.current && !ref.current.contains(event.target)) {
+      document.body.style.overflow = 'unset';
       setIsOpen(false);
     }
   }
