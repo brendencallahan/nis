@@ -1,5 +1,4 @@
 TODO:
-change homepage to reflect search changes (smaller text, no show/hide text, etc.)
 add nasa_id as key to search results
 start about page
 add button to allow favoriting items
@@ -13,3 +12,4 @@ close menu on route change
 margin right above menu prevents clicking to close. fix.
 add show/hide for all descriptions
 shrink description text size on small devices
+change homepage to reflect search changes (smaller text, no show/hide text, etc.)
