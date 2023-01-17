@@ -7,10 +7,8 @@ export default function Result({ result }) {
   function handleShowMore() {
     if (readMore.length === 0) {
       setReadMore(['line-clamp-1']);
-      console.log('read more');
     } else {
       setReadMore([]);
-      console.log('read less');
     }
     setIsTextShowing(!isTextShowing);
   }
@@ -22,7 +20,7 @@ export default function Result({ result }) {
             <button className='w-full text-left' onClick={handleShowMore}>
           <div className="py-6 px-2">
             <div className="text-gray-dark dark:text-slate-400 text-md md:text-xl font-medium mb-2 mt-5 flex">
-              <h5 className={readMore}>{result.data[0].title + "."}</h5>
+              <h5 className={readMore}>{result.data[0].title}</h5>
               <h5 className="ml-auto">
                 {(readMore ? " " : "") + result.data[0].date_created.substring(0, 10)}
               </h5>

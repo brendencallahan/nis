@@ -32,8 +32,7 @@ export default function Apod() {
           setLoaded(true);
           setHasMore(true);
           setPage(2);
-        }
-        else {
+        } else {
           setLoaded(true);
           setHasMore(false);
         }
@@ -52,7 +51,8 @@ export default function Apod() {
   }, [query]);
 
   //TODO: Refactor :) needs to be broken up more
-  useLayoutEffect(() => { //Use layout will prevent the observer loading images twice on first load
+  useLayoutEffect(() => {
+    //Use layout will prevent the observer loading images twice on first load
     if (loaded) {
       const options = { root: null, rootMargin: '200%', threshold: 0 };
       const observer = new IntersectionObserver((entries) => {
@@ -101,12 +101,16 @@ export default function Apod() {
       {!loaded ? (
         <div className="h-screen">Loading...</div>
       ) : (
-          <div>
-            {culledResults.map((result) => {
-              return <Result key={result.nasa_id} result={result} />; //TODO: Add nasa_id as key
-            })}
-            {hasMore ? <div ref={lastPic}></div> : <p className='mt-2.5 text-center'>End of Results...</p>}
-          </div>
+        <div>
+          {culledResults.map((result) => {
+            return <Result key={result.data[0].nasa_id} result={result} />;
+          })}
+          {hasMore ? (
+            <div ref={lastPic}></div>
+          ) : (
+            <p className="mt-2.5 text-center">End of Results...</p>
+          )}
+        </div>
       )}
     </div>
   );
