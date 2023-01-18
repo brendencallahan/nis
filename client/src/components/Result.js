@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import addFavoriteItem from '../utils/addFavoriteItem';
 
 export default function Result({ result }) {
   const [readMore, setReadMore] = useState(['line-clamp-1']);
@@ -34,11 +35,17 @@ export default function Result({ result }) {
             </p>
           </div>
           </button>
+          <div className='relative'>
+
+          <button onClick={() => addFavoriteItem(result)} className='absolute right-3 top-3 text-slate-400 bg-base-dark rounded-md h-8 px-5'>
+                {"<3"}
+          </button>
           <img
             className="w-full"
             src={result.links[0].href}
             alt={result.data[0].description_508 || 'No description found'}
             />
+            </div>
         </div>
       </article>
     </>
