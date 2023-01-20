@@ -14,7 +14,7 @@ export default function HamburgerModal() {
       >
       <Link to="/favorites">Favorites</Link>
       <Link to="/about">About</Link>
-      <a href="https://brendencallahan.com/#contact" target="_blank" rel="noreferrer noopener">Hire Me</a>
+      <Link to="/contact">Contact Me</Link>
       <DarkModeButton />
     </div>
   );

@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 import FavoritesPage from './pages/FavoritesPage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 import {
   createBrowserRouter,
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="search" element={<SearchPage />} />
       <Route path="favorites" element={<FavoritesPage />} />
       <Route path="about" element={<AboutPage />} />
+      <Route path="contact" element={<ContactPage />} />
     </Route>
   )
 );
