@@ -14,7 +14,7 @@ export default function Apod() {
   const [hasMore, setHasMore] = useState(false);
   const lastPic = useRef(null);
   const query = useQuery();
-  const [favorites, setFavorites] = useState(localStorage.getItem('favorites')); // Not parsing for easier includes method
+  const [favorites, setFavorites] = useState(null);
 
 
   function useQuery() {
@@ -24,6 +24,7 @@ export default function Apod() {
 
   // Possibly move to new file but this is the only place I'm planning on making a search request.
   useEffect(() => {
+    setFavorites(localStorage.getItem('favorites')) // leaving as string, to use .includes()
     const source = axios.CancelToken.source();
     const fetchData = async () => {
       try {

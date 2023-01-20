@@ -3,8 +3,8 @@ TODO:
 add pop-up menu for query paramater selection i.e. when a user clicks the small menu in search bar let them select year of search, etc.
 
 TODO WEIRD:
+fix scroll position on favorites page
 fix vertical spacing on searchbar hamburger menu
-fix top padding on result card
 fix line-clamp-1 on mobile. Might have to do with the date? seems safari specific. only happens when iPhone testing.
 
 DONE:
@@ -19,3 +19,4 @@ add button to allow favoriting
 light mode favorite button
 start favorites page
 start about page
+fix top padding on result card
