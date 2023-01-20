@@ -10,6 +10,7 @@ export default function HamburgerMenu() {
   // Close menu when url changes
   useEffect(() => {
     setIsOpen(false);
+    document.body.style.overflow = 'unset';
   }, [pathname]);
 
   function handleOpening() {

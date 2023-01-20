@@ -43,7 +43,7 @@ app.get('/api', cache('15 minutes'), (req, res) => {
 app.get('/api/home', cache('60 minutes'), (req, res) => {
   const getAposData = async () => {
     const aposRes = await axios.get(
-      `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
+      `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`
     );
     const aposData = await aposRes.data;
     console.log('Home page NASA API called');

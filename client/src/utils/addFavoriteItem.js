@@ -1,6 +1,7 @@
 export default function addFavoriteItem(result) {
-  if (localStorage.getItem) {
-    const results = localStorage.getItem("favorites");
+  const results = JSON.parse(localStorage.getItem("favorites"));
+  console.log(results);
+  if (results) {
     localStorage.setItem("favorites", JSON.stringify([...results, result]));
     console.log([...results, result]);
   } else {

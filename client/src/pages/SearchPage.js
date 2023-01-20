@@ -14,6 +14,8 @@ export default function Apod() {
   const [hasMore, setHasMore] = useState(false);
   const lastPic = useRef(null);
   const query = useQuery();
+  const [favorites, setFavorites] = useState(localStorage.getItem('favorites')); // Not parsing for easier includes method
+
 
   function useQuery() {
     const { search } = useLocation();
@@ -103,7 +105,11 @@ export default function Apod() {
       ) : (
         <div>
           {culledResults.map((result) => {
-            return <Result key={result.data[0].nasa_id} result={result} />;
+            if (favorites && favorites.includes(result.data[0].nasa_id)) {
+              return <Result key={result.data[0].nasa_id} result={result} favorited={true}/>;
+            } else {
+              return <Result key={result.data[0].nasa_id} result={result} favorited={false}/>;
+            }
           })}
           {hasMore ? (
             <div ref={lastPic}></div>
