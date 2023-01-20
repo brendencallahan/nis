@@ -1,8 +1,5 @@
 *change demo_key back to restricted
 TODO:
-start favorites page
-start about page
-hamburger menu close on any button press not just route change
 add pop-up menu for query paramater selection i.e. when a user clicks the small menu in search bar let them select year of search, etc.
 
 TODO WEIRD:
@@ -20,3 +17,5 @@ change homepage to reflect searcpage changes (smaller text, no show/hide text, e
 add nasa_id as key to search results
 add button to allow favoriting
 light mode favorite button
+start favorites page
+start about page

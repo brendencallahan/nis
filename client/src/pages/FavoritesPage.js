@@ -11,7 +11,7 @@ export default function FavoritesPage() {
 
   return (
     <>
-      <h2 className="text-transparent bg-clip-text bg-gradient-to-t from-slate-700 to-base-dark dark:from-gray-light dark:to-slate-300 nis-font text-center text-3xl mb-10 ml-2.5">Favorites</h2>
+      <h2 className="text-transparent bg-clip-text bg-gradient-to-t from-slate-700 to-base-dark dark:from-gray-light dark:to-slate-300 nis-font text-center text-3xl mb-5 ml-2.5">Favorites</h2>
       {results === null ? (
         <p>No favorites saved</p>
       ) : (

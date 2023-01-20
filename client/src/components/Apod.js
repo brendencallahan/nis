@@ -45,7 +45,7 @@ export default function Apod() {
     return (
       <>
         <article className="flex justify-center">
-          <div className="rounded-lg shadow-lg w-full">
+          <div className="rounded-lg shadow-md w-full">
             <button className='w-full text-left' onClick={handleShowMore}>
               <div className="py-6 px-2">
                 <div className="text-gray-dark dark:text-slate-400 text-md md:text-xl font-medium mb-2 mt-5 flex">
