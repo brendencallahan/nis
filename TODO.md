@@ -1,5 +1,6 @@
 *change demo_key back to restricted
 TODO:
+add "Nasa Image Search" under "NIS" 
 add pop-up menu for query paramater selection i.e. when a user clicks the small menu in search bar let them select year of search, etc.
 
 TODO WEIRD:
