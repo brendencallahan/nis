@@ -1,17 +1,17 @@
 //apod = Astronomy Picture Of the Day
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Apod() {
   const [apod, setApod] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [readMore, setReadMore] = useState(['line-clamp-1']);
+  const [readMore, setReadMore] = useState(["line-clamp-1"]);
   const [isTextShowing, setIsTextShowing] = useState(false);
 
   function handleShowMore() {
     if (readMore.length === 0) {
-      setReadMore(['line-clamp-1']);
+      setReadMore(["line-clamp-1"]);
     } else {
       setReadMore([]);
     }
@@ -21,7 +21,7 @@ export default function Apod() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await axios.get('/api/home');
+        const resp = await axios.get("/api/home");
         const data = await resp.data;
         console.log(data);
         setApod(data);
@@ -46,37 +46,47 @@ export default function Apod() {
       <>
         <article className="flex justify-center">
           <div className="rounded-lg shadow-md w-full">
-            <button className='w-full text-left' onClick={handleShowMore}>
-              <div className="py-6 px-2">
+            <button className="w-full text-left" onClick={handleShowMore}>
+              <div className="pb-6 px-2">
                 <div className="text-gray-dark dark:text-slate-400 text-md md:text-xl font-medium mb-2 mt-5 flex">
                   <h5 className={readMore}>{apod.title}</h5>
                   <h5 className="ml-auto">
                     {(readMore ? " " : "") + apod.date.substring(0, 10)}
-                    </h5>
+                  </h5>
                 </div>
                 <p
                   className={`text-base-dark dark:text-slate-300  text-sm md:text-base ${readMore}`}
                 >
                   {apod.explanation
                     ? apod.explanation
-                    : 'No description found...'}
+                    : "No description found..."}
                 </p>
               </div>
             </button>
-            {readMore.length > 0 && <p className='text-xs text-center'>(Click text to show/hide)</p>}
+            {readMore.length > 0 && (
+              <p className="text-xs text-center">(Click text to show/hide)</p>
+            )}
             <img
               className="w-full"
               src={apod.url}
-              alt={apod.explanation || 'No description found'}
-              />
+              alt={apod.explanation || "No description found"}
+            />
           </div>
         </article>
-        <div className="opacity-50 pt-[10px] text-xs text-center">
+        <div className="opacity-50 pt-[10px] text-xs flex justify-between mx-2">
           {apod.copyright ? (
             <p className="">©{apod.copyright}</p>
           ) : (
             <p className="">No copyright found</p>
           )}
+          <a
+            href="https://apod.nasa.gov/apod/archivepixFull.html"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="underline"
+          >
+            Previous Pictures
+          </a>
         </div>
       </>
     );
