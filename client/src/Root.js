@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import NavBar from './components/NavBar';
+import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import NavBar from "./components/NavBar";
 
 export default function Root() {
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('darkMode'))) {
-      document.body.classList.add('dark');
+    if (JSON.parse(localStorage.getItem("darkMode"))) {
+      document.body.classList.add("dark");
     }
   }, []);
 

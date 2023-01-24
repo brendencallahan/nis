@@ -1,4 +1,4 @@
-import { Form } from 'react-router-dom';
+import { Form } from "react-router-dom";
 
 export default function SearchBar({ query }) {
   return (
@@ -36,26 +36,11 @@ export default function SearchBar({ query }) {
           id="default-search"
           name="q"
           className="dark:focus-within:text-base-light focus-within:text-base-dark block w-full mb-[3.25rem] p-4 pl-10 text-md border-2 focus:outline-none dark:border-slate-400 border-gray-dark focus:border-nasa-blue dark:focus:border-blue-400 rounded-md dark:bg-base-dark bg-gray-light"
-          placeholder={'Search...'}
-          defaultValue={query || ''}
+          placeholder={"Search..."}
+          defaultValue={query || ""}
           key={query}
           required
         />
-        <button
-          type="submit"
-          className="dark:text-gray-light text-gray-dark absolute right-2.5 bottom-2.5 px-2 pt-2 pb-[0.35rem]"
-        >
-          <svg
-            className="fill-base-dark dark:fill-gray-light"
-            viewBox="0 0 100 80"
-            width="20"
-            height="20"
-          >
-            <rect width="100" height="7.5" rx="10"></rect>
-            <rect y="30" width="100" height="7.5" rx="10"></rect>
-            <rect y="60" width="100" height="7.5" rx="10"></rect>
-          </svg>
-        </button>
       </div>
     </Form>
   );
