@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import addFavoriteItem from '../utils/addFavoriteItem';
-import deleteFavoriteItem from '../utils/deleteFavoriteItem';
+import { useState } from "react";
+import addFavoriteItem from "../utils/addFavoriteItem";
+import deleteFavoriteItem from "../utils/deleteFavoriteItem";
 
 export default function Result({ result, favorited }) {
-  const [readMore, setReadMore] = useState(['line-clamp-1']);
+  const [readMore, setReadMore] = useState(["line-clamp-1"]);
   const [isTextShowing, setIsTextShowing] = useState(false);
   const [isFavorite, setIsFavorite] = useState(favorited);
 
   function handleShowMore() {
     if (readMore.length === 0) {
-      setReadMore(['line-clamp-1']);
+      setReadMore(["line-clamp-1"]);
     } else {
       setReadMore([]);
     }
@@ -28,13 +28,13 @@ export default function Result({ result, favorited }) {
   return (
     <>
       <article className="flex justify-center">
-        <div className="mt-5 rounded-lg shadow-md w-full">
+        <div className="mt-5 rounded-lg w-full">
           <button className="w-full text-left" onClick={handleShowMore}>
             <div className="pb-6 px-2">
               <div className="text-gray-dark dark:text-slate-400 text-md md:text-xl font-medium mb-2 mt-5 flex">
                 <h5 className={readMore}>{result.data[0].title}</h5>
                 <h5 className="ml-auto">
-                  {(readMore ? ' ' : '') +
+                  {(readMore ? " " : "") +
                     result.data[0].date_created.substring(0, 10)}
                 </h5>
               </div>
@@ -43,7 +43,7 @@ export default function Result({ result, favorited }) {
               >
                 {result.data[0].description_508
                   ? result.data[0].description_508
-                  : 'No description found...'}
+                  : "No description found..."}
               </p>
             </div>
           </button>
@@ -56,12 +56,12 @@ export default function Result({ result, favorited }) {
                 rounded-md
                 "
             >
-              {isFavorite ? '</3' : '<3'}
+              {isFavorite ? "</3" : "<3"}
             </button>
             <img
               className="w-full"
               src={result.links[0].href}
-              alt={result.data[0].description_508 || 'No description found'}
+              alt={result.data[0].description_508 || "No description found"}
             />
           </div>
         </div>

@@ -1,5 +1,5 @@
 import getFavoriteItems from "../utils/getFavoriteItems";
-import { useState, useLayoutEffect, useRef } from "react";
+import { useState, useLayoutEffect } from "react";
 import Result from "../components/Result";
 
 export default function FavoritesPage() {

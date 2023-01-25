@@ -23,7 +23,6 @@ export default function Apod() {
       try {
         const resp = await axios.get("/api/home");
         const data = await resp.data;
-        console.log(data);
         setApod(data);
         setIsLoading(false);
       } catch (err) {

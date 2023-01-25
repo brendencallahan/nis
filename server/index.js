@@ -27,12 +27,9 @@ app.use("/api", apiLimiter);
 app.use(express.static(path.join(__dirname + "/public")));
 
 // Set routes
-app.use("/api/results", cache("15 minutes"), require("./routes/results"));
 
 // Set cors
 app.use(cors());
-
-// Define responses
 
 // Say hello
 app.get("/api", cache("15 minutes"), (req, res) => {
@@ -48,7 +45,6 @@ app.get("/api/home", cache("60 minutes"), (req, res) => {
       `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`
     );
     const aposData = await aposRes.data;
-    console.log("Home page NASA API called");
     res.json(aposData);
   };
   getAposData();

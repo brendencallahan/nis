@@ -1,5 +1,4 @@
 # NIS: https://nis.up.railway.app/
-### *work in progress**
 
 <br>
 
@@ -7,21 +6,15 @@ NIS, or NASA Image Search, is a web app that does three main things: it first di
 
 <br>
 
-
 Here is the figma design I made and started with.
 
 ![Screenshot 2023-01-02 at 16-56-15 Figma](https://user-images.githubusercontent.com/47364240/210288160-251b6026-679d-47f7-92ac-4f90ac99e734.png)
-
-
-
 
 ## To run locally:
 
 <br>
 
-`
-git clone https://github.com/brendencallahan/nis
-`
+`git clone https://github.com/brendencallahan/nis`
 
 <br>
 
@@ -44,9 +37,7 @@ of /server/index.js. In the url, instead of providing an environment variable, u
 
 The url should look like this
 
-`
-https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY
-`
+`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`
 
 <br>
 
@@ -63,6 +54,3 @@ npm run dev
 <br>
 
 For more information about these APIs visit NASAs documentation here: https://api.nasa.gov/
-
-
-**I have not finished the search options, favorites page, or about page. The rest of the functionality is completed.*

@@ -1,24 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import Root from './Root';
-import reportWebVitals from './reportWebVitals';
-import HomePage from './pages/HomePage';
-import SearchPage from './pages/SearchPage';
-import FavoritesPage from './pages/FavoritesPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import Root from "./Root";
+import reportWebVitals from "./reportWebVitals";
+import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/SearchPage";
+import FavoritesPage from "./pages/FavoritesPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import ErrorPage from "./pages/ErrorPage";
 
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider
-} from 'react-router-dom';
+  RouterProvider,
+} from "react-router-dom";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
+      <Route path="*" element={<ErrorPage />} />
       <Route path="" element={<HomePage />} />
       <Route path="search" element={<SearchPage />} />
       <Route path="favorites" element={<FavoritesPage />} />
@@ -28,7 +30,7 @@ const router = createBrowserRouter(
   )
 );
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   //<React.StrictMode>
   <RouterProvider router={router} />
   //</React.StrictMode>
